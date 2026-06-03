@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Multilingual Form</title>
+  <meta name="description" content="A contact form translated into 5 languages, including right-to-left Arabic. Built with FastAPI + vanilla JS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>" />
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <!-- Language switcher (populated by JS) -->
+      <div class="lang-row">
+        <span class="lang-label" data-i18n="langLabel">Language</span>
+        <div class="lang-switch" id="langSwitch" role="group" aria-label="Choose language"></div>
+      </div>
+
+      <header class="card-head">
+        <div class="badge" aria-hidden="true">✉️</div>
+        <h1 data-i18n="title">Get in touch</h1>
+        <p class="sub" data-i18n="subtitle">Have a question or a project in mind?</p>
+      </header>
+
+      <form id="contactForm" novalidate>
+        <div class="field">
+          <label for="name" data-i18n="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" />
+          <span class="error" data-error-for="name"></span>
+        </div>
+
+        <div class="field">
+          <label for="email" data-i18n="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" />
+          <span class="error" data-error-for="email"></span>
+        </div>
+
+        <div class="field">
+          <label for="subject" data-i18n="subject">Subject</label>
+          <select id="subject" name="subject"></select>
+          <span class="error" data-error-for="subject"></span>
+        </div>
+
+        <div class="field">
+          <label for="message" data-i18n="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+          <span class="error" data-error-for="message"></span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submit">Send message</button>
+        <p class="privacy" data-i18n="privacy">We respect your privacy.</p>
+      </form>
+
+      <!-- Success state -->
+      <div class="success" id="success" hidden>
+        <div class="check" aria-hidden="true">✓</div>
+        <h2 id="successTitle" data-i18n="successTitle">Message sent!</h2>
+        <p id="successMsg"></p>
+        <button class="ghost-btn" id="resetBtn" data-i18n="sendAnother">Send another</button>
+      </div>
+    </div>
+
+    <p class="credit">Multilingual contact form · FastAPI + vanilla JS · Portfolio sample by Stanish Appalo JA</p>
+  </div>
+
+  <script src="static/i18n.js"></script>
+  <script src="static/app.js"></script>
+</body>
+</html>

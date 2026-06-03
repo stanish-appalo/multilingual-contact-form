@@ -1,0 +1,102 @@
+/* =========================================================
+   Multilingual Contact Form
+   Friendly, premium look: soft gradient backdrop, glass card.
+   Uses CSS logical properties so RTL (Arabic) flips cleanly.
+   ========================================================= */
+
+:root {
+  --ink: #1c1f2e; --slate: #5b6178; --muted: #9aa0b4;
+  --line: #e7e9f2; --field: #f6f7fb;
+  --indigo: #6366f1; --indigo-700: #4f46e5; --fuchsia: #d946ef; --cyan: #22d3ee;
+  --error: #e11d48; --success: #10b981; --success-bg: #e7f9f1;
+  --radius: 18px; --shadow: 0 40px 90px -40px rgba(40, 30, 90, .5);
+  --display: "Sora", system-ui, sans-serif; --body: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: var(--body); color: var(--ink); line-height: 1.6; min-height: 100vh;
+  display: grid; place-items: center; padding: 32px 18px;
+  background: #eef0fb;
+  background-image:
+    radial-gradient(60% 60% at 15% 10%, rgba(99,102,241,.28), transparent 60%),
+    radial-gradient(50% 50% at 90% 20%, rgba(217,70,239,.22), transparent 60%),
+    radial-gradient(60% 60% at 80% 95%, rgba(34,211,238,.22), transparent 60%);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { width: 100%; max-width: 560px; }
+.card {
+  background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 26px;
+  box-shadow: var(--shadow); padding: 34px;
+}
+
+/* Language switcher */
+.lang-row { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
+.lang-label { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.lang-switch { display: flex; gap: 6px; flex-wrap: wrap; }
+.lang-pill {
+  font-family: var(--body); display: inline-flex; align-items: center; gap: 6px;
+  font-size: .85rem; font-weight: 600; color: var(--slate);
+  padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: #fff; cursor: pointer; transition: .15s;
+}
+.lang-pill:hover { border-color: var(--indigo); color: var(--indigo); }
+.lang-pill.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.lang-pill .flag { font-size: 1rem; }
+
+/* Header */
+.card-head { margin-bottom: 26px; }
+.badge {
+  width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center;
+  font-size: 1.6rem; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--indigo), var(--fuchsia)); box-shadow: 0 12px 26px -12px rgba(99,102,241,.7);
+}
+.card-head h1 { font-family: var(--display); font-size: 1.85rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
+.sub { color: var(--slate); font-size: 1rem; }
+
+/* Fields */
+.field { margin-bottom: 16px; }
+.field label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: 7px; color: var(--ink); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 13px 15px; border: 1.5px solid var(--line); border-radius: 12px;
+  font-family: inherit; font-size: 1rem; color: var(--ink); background: var(--field);
+  transition: border-color .15s, box-shadow .15s, background .15s; text-align: start;
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--indigo); background: #fff; box-shadow: 0 0 0 3px rgba(99,102,241,.16);
+}
+.field input.invalid, .field select.invalid, .field textarea.invalid { border-color: var(--error); }
+.error { display: block; color: var(--error); font-size: .8rem; margin-top: 5px; min-height: 1em; }
+
+/* Submit */
+.submit-btn {
+  width: 100%; font-family: var(--body); font-weight: 700; font-size: 1.02rem; color: #fff;
+  padding: 15px; border: 0; border-radius: 12px; cursor: pointer; margin-top: 6px;
+  background: linear-gradient(120deg, var(--indigo), var(--fuchsia)); transition: .18s;
+}
+.submit-btn:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 16px 34px -16px rgba(99,102,241,.7); }
+.submit-btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+.privacy { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 14px; }
+
+/* Success */
+.success { text-align: center; padding: 14px 6px; }
+.check { width: 66px; height: 66px; margin: 0 auto 18px; border-radius: 50%; background: var(--success); color: #fff; font-size: 2rem; display: grid; place-items: center; box-shadow: 0 14px 30px -14px rgba(16,185,129,.7); }
+.success h2 { font-family: var(--display); font-size: 1.5rem; margin-bottom: 10px; }
+.success p { color: var(--slate); margin-bottom: 22px; }
+.ghost-btn { font-family: var(--body); font-weight: 600; font-size: .95rem; color: var(--indigo); background: #fff; border: 1.5px solid var(--line); padding: 11px 22px; border-radius: 999px; cursor: pointer; transition: .15s; }
+.ghost-btn:hover { border-color: var(--indigo); }
+
+.credit { text-align: center; color: rgba(60,60,90,.55); font-size: .8rem; margin-top: 20px; }
+
+/* RTL tweaks — most layout flips automatically via logical properties */
+[dir="rtl"] .lang-row { flex-direction: row-reverse; justify-content: flex-end; }
+[dir="rtl"] body { font-family: var(--body); }
+
+@media (max-width: 480px) {
+  .card { padding: 26px 20px; }
+  .card-head h1 { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

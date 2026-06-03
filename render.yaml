@@ -1,0 +1,17 @@
+# Render Blueprint — API + free Postgres database.
+services:
+  - type: web
+    name: multilingual-contact-form
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: contact-form-db
+          property: connectionString
+
+databases:
+  - name: contact-form-db
+    plan: free
